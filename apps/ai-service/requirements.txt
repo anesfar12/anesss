@@ -1,0 +1,56 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# LUXE POS v5.1 — Python AI Microservice Dependencies
+# Python 3.14/3.15 | FastAPI Q2-2026 | ChromaDB 0.7+ HNSW | LangChain 0.4+
+# Blueprint Section 4.1 — exact version targets
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ── Runtime ─────────────────────────────────────────────────────────────────
+# Python 3.14 in production (GIL-optional PEP 703, JIT PEP 744 opt-in)
+# Set PYTHON_JIT=0 until Python 3.15 marks JIT stable (Engineering Fix 8)
+
+# ── Web Framework ────────────────────────────────────────────────────────────
+fastapi>=0.120.0                     # Q2 2026 stable — lifespan context, ASGI 3.0
+uvicorn[standard]>=0.34.0            # io_uring backend on Linux, HTTP/3 prep
+httpx>=0.29.0                        # HTTP/2 + HTTP/3 client, native async
+
+# ── Data Validation (Rust-core — Section 4.2) ────────────────────────────────
+pydantic>=2.8.0                      # v2 Rust-core (pydantic-core) — max validation throughput
+pydantic-settings>=2.4.0
+
+# ── AI / LLM ─────────────────────────────────────────────────────────────────
+langchain>=0.4.0                     # Q2 2026 stable — compiled graph execution
+langchain-community>=0.4.0
+langchain-groq>=0.2.0                # Llama 3.3 + Jais-30b via Groq
+langchain-openai>=0.3.0              # text-embedding-3-small, o3 fallback
+langgraph>=0.3.0                     # Stateful agent for multi-turn Arabic consultations
+groq>=0.15.0                         # Q2 2026 — Llama 3.3 streaming, Jais Arabic
+
+# ── Vector Store ─────────────────────────────────────────────────────────────
+chromadb>=0.7.0                      # Q2 2026 stable — native HNSW, persistent snapshots
+
+# ── Embeddings ───────────────────────────────────────────────────────────────
+openai>=1.60.0                       # Q2 2026 — text-embedding-3-small, o3
+sentence-transformers>=3.4.0         # Multi-lingual Arabic + Grasse terminology models
+
+# ── Database ──────────────────────────────────────────────────────────────────
+asyncpg>=0.30.0                      # PostgreSQL 18 async driver
+sqlalchemy>=2.0.36                   # ORM (optional — direct asyncpg preferred)
+
+# ── Async & Performance ───────────────────────────────────────────────────────
+anyio>=4.6.0
+orjson>=3.10.0                       # Rust JSON serialiser — faster than stdlib
+python-multipart>=0.0.12             # File upload support
+
+# ── Monitoring ───────────────────────────────────────────────────────────────
+prometheus-fastapi-instrumentator>=7.0.0
+structlog>=24.4.0
+
+# ── Security ─────────────────────────────────────────────────────────────────
+python-jose[cryptography]>=3.3.0     # JWT verification (matches NestJS secret)
+cryptography>=43.0.0
+
+# ── Dev / Testing ─────────────────────────────────────────────────────────────
+pytest>=8.3.0
+pytest-asyncio>=0.24.0
+pytest-cov>=5.0.0
+httpx>=0.29.0                        # Test client

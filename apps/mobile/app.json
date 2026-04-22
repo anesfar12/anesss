@@ -1,0 +1,72 @@
+{
+  "expo": {
+    "name": "LUXE POS Mobile",
+    "slug": "luxe-pos-mobile",
+    "version": "5.1.0",
+    "sdkVersion": "54.0.0",
+    "newArchEnabled": true,
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0a0a0a"
+    },
+    "experiments": {
+      "typedRoutes": true
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.luxeparfums.pos",
+      "buildNumber": "51",
+      "infoPlist": {
+        "NFCReaderUsageDescription": "LUXE POS uses NFC to authenticate perfume bottles via NTAG 424 DNA chip.",
+        "NSFaceIDUsageDescription": "LUXE POS uses Face ID for staff authentication.",
+        "NSCameraUsageDescription": "LUXE POS uses the camera for barcode scanning.",
+        "NSPhotoLibraryUsageDescription": "LUXE POS needs photo library access to attach customer photos."
+      },
+      "entitlements": {
+        "com.apple.developer.nfc.readersession.formats": ["TAG"]
+      }
+    },
+    "android": {
+      "package": "com.luxeparfums.pos",
+      "versionCode": 51,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0a0a0a"
+      },
+      "permissions": [
+        "android.permission.NFC",
+        "android.permission.CAMERA",
+        "android.permission.USE_BIOMETRIC",
+        "android.permission.USE_FINGERPRINT"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-camera",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "newArchEnabled": true,
+            "deploymentTarget": "17.0"
+          },
+          "android": {
+            "newArchEnabled": true,
+            "minSdkVersion": 26,
+            "compileSdkVersion": 35
+          }
+        }
+      ]
+    ],
+    "scheme": "luxe-pos",
+    "extra": {
+      "eas": {
+        "projectId": "luxe-pos-mobile-2026"
+      }
+    }
+  }
+}
